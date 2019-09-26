@@ -1,0 +1,10 @@
+# Provide the graphql schema in this file.
+
+# The query entry type.
+type Query {
+    time: String
+}
+
+# The mutation entry type.
+# type Mutation {
+# }
