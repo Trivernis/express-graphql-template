@@ -4,7 +4,7 @@ This repository can be used as a template to create a graphql webservice with no
 
 ## Install
 
-Just clone the repository and run `npm i`.
+Just clone the repository and run `yarn install`.
 
 ## Build
 
