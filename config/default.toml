@@ -1,11 +1,11 @@
 # http server configuration
-server:
-  port: 8080
+[server]
+port = 8080
 
 # graphql configuration
-graphql:
-  graphiql: true
+[graphql]
+graphiql = true
 
 # logging configuration
-logging:
-  loglevel: debug
+[logging]
+loglevel = "debug"

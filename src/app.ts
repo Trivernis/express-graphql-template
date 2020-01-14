@@ -1,15 +1,15 @@
 import * as compression from "compression";
+import * as config from "config";
 import * as express from "express";
 import * as graphqlHTTP from "express-graphql";
 import {buildSchema} from "graphql";
 import {importSchema} from "graphql-import";
 import * as http from "http";
 import * as path from "path";
-import globals from "./lib/globals";
 import {resolvers} from "./graphql/resolvers";
+import globals from "./lib/globals";
 
 const logger = globals.logger;
-const config = globals.config;
 
 /**
  * Main class of the application server.
@@ -43,7 +43,7 @@ class App {
         });
         this.app.use("/graphql",  graphqlHTTP((request, response) => {
             return {
-                graphiql: config.graphql.graphiql,
+                graphiql: config.get("graphql.graphiql"),
                 rootValue: resolvers(request, response),
                 schema: buildSchema(importSchema(path.join(__dirname, "./graphql/schema.graphql"))),
             };
@@ -54,10 +54,10 @@ class App {
      * Starts the web server.
      */
     public start() {
-        if (config.server.port) {
+        if (config.has("server.port")) {
             logger.info(`Starting server...`);
-            this.app.listen(config.server.port);
-            logger.info(`Server running on port ${config.server.port}`);
+            this.app.listen(config.get("server.port"));
+            logger.info(`Server running on port ${config.get("server.port")}`);
         } else {
             logger.error("No port specified in the config." +
                 "Please configure a port in the config.yaml.");

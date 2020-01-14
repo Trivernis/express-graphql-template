@@ -15,6 +15,6 @@ export function resolvers(req: http.IncomingMessage, res: http.OutgoingMessage) 
          */
         time() {
             return (new Date()).toString();
-        }
-    }
+        },
+    };
 }
